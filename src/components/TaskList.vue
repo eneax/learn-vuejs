@@ -18,7 +18,7 @@ const emits = defineEmits<{
         <input type="checkbox" @input="emits('toggleDone', task.id)" :checked="task.completed" />
         <span :class="{ completed: task.completed }">{{ task.title }}</span>
       </label>
-      <Button class="outline" @click="emits('deleteTask', task.id)">Delete</Button>
+      <button class="outline" @click="emits('deleteTask', task.id)">Delete</button>
     </article>
   </TransitionGroup>
 </template>
