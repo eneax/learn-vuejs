@@ -19,7 +19,9 @@ function addTask(newTask: string) {
   <main>
     <h1>{{ title }}</h1>
     <TaskForm @add-task="addTask" />
-    <p>There are {{ tasks.length }} tasks.</p>
+    <article v-for="task in tasks" :key="task.id">
+      {{ task.title }}
+    </article>
   </main>
 </template>
 
