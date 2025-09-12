@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import TaskForm from './components/TaskForm.vue';
 import type { Task } from './types';
+
+import TaskForm from './components/TaskForm.vue';
+import TaskList from './components/TaskList.vue';
 
 const title = ref('Tasks')
 const tasks = ref<Task[]>([])
@@ -19,9 +21,7 @@ function addTask(newTask: string) {
   <main>
     <h1>{{ title }}</h1>
     <TaskForm @add-task="addTask" />
-    <article v-for="task in tasks" :key="task.id">
-      {{ task.title }}
-    </article>
+    <TaskList :tasks />
   </main>
 </template>
 
