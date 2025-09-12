@@ -15,6 +15,13 @@ function addTask(newTask: string) {
     completed: false
   })
 }
+
+function toggleDone(id: string) {
+  const task = tasks.value.find(task => task.id === id)
+  if (task) {
+    task.completed = !task.completed
+  }
+}
 </script>
 
 <template>
@@ -22,8 +29,8 @@ function addTask(newTask: string) {
     <h1>{{ title }}</h1>
     <TaskForm @add-task="addTask" />
     <h3 v-if="!tasks.length">Add a task to get started.</h3>
-    <h3 v-else>0 / {{ tasks.length }} tasks completed</h3>
-    <TaskList :tasks />
+    <h3 v-else>{{tasks.filter(task => task.completed).length}} / {{ tasks.length }} tasks completed</h3>
+    <TaskList :tasks @toggle-done="toggleDone" />
   </main>
 </template>
 
