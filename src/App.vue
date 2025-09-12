@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { Task } from './types';
 
 import TaskForm from './components/TaskForm.vue';
@@ -7,6 +7,8 @@ import TaskList from './components/TaskList.vue';
 
 const title = ref('Tasks')
 const tasks = ref<Task[]>([])
+
+const totalTasksCompleted = computed(() => tasks.value.reduce((total, task) => task.completed ? total + 1 : total, 0))
 
 function addTask(newTask: string) {
   tasks.value.push({
@@ -29,7 +31,7 @@ function toggleDone(id: string) {
     <h1>{{ title }}</h1>
     <TaskForm @add-task="addTask" />
     <h3 v-if="!tasks.length">Add a task to get started.</h3>
-    <h3 v-else>{{tasks.filter(task => task.completed).length}} / {{ tasks.length }} tasks completed</h3>
+    <h3 v-else>{{ totalTasksCompleted }} / {{ tasks.length }} tasks completed</h3>
     <TaskList :tasks @toggle-done="toggleDone" />
   </main>
 </template>
