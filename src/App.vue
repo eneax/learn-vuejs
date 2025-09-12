@@ -24,6 +24,13 @@ function toggleDone(id: string) {
     task.completed = !task.completed
   }
 }
+
+function deleteTask(id: string) {
+  const index = tasks.value.findIndex(task => task.id === id)
+  if (index !== -1) {
+    tasks.value.splice(index, 1)
+  }
+}
 </script>
 
 <template>
@@ -32,7 +39,7 @@ function toggleDone(id: string) {
     <TaskForm @add-task="addTask" />
     <h3 v-if="!tasks.length">Add a task to get started.</h3>
     <h3 v-else>{{ totalTasksCompleted }} / {{ tasks.length }} tasks completed</h3>
-    <TaskList :tasks @toggle-done="toggleDone" />
+    <TaskList :tasks @toggle-done="toggleDone" @delete-task="deleteTask" />
   </main>
 </template>
 
