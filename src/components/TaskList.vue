@@ -15,7 +15,7 @@ const emits = defineEmits<{
     <article v-for="task in props.tasks" :key="task.id">
       <label>
         <input type="checkbox" @input="emits('toggleDone', task.id)" :checked="task.completed" />
-        {{ task.title }}
+        <span :class="{ completed: task.completed }">{{ task.title }}</span>
       </label>
     </article>
   </div>
@@ -24,5 +24,9 @@ const emits = defineEmits<{
 <style scoped>
 .task-list {
   margin-top: 1rem;
+}
+
+.completed {
+  text-decoration: line-through;
 }
 </style>
