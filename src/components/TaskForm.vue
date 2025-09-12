@@ -8,7 +8,10 @@ const emit = defineEmits<{
 const newTask = ref('')
 
 function formSubmit() {
-  emit('addTask', newTask.value)
+  if (newTask.value.trim()) {
+    emit('addTask', newTask.value.trim())
+    newTask.value = ''
+  }
 }
 </script>
 
