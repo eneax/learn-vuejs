@@ -1,10 +1,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
+const emit = defineEmits<{
+  addTask: [newTask: string]
+}>()
+
 const newTask = ref('')
 
 function formSubmit() {
-  console.log('Form submitted', newTask.value)
+  emit('addTask', newTask.value)
 }
 </script>
 

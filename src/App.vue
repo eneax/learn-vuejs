@@ -3,12 +3,16 @@ import { ref } from 'vue'
 import TaskForm from './components/TaskForm.vue';
 
 const title = ref('Tasks')
+
+function addTask(newTask: string) {
+  console.log('New Task:', newTask)
+}
 </script>
 
 <template>
   <main>
     <h1>{{ title }}</h1>
-    <TaskForm />
+    <TaskForm @add-task="addTask" />
   </main>
 </template>
 
